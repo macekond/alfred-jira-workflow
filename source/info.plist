@@ -17,32 +17,67 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6F2E82CC-1B20-48A7-9504-C6BC86C17D9B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>29388DAE-861D-424E-9B53-9D07B2D789B6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>zfdang</string>
+	<string>zfdang &amp; macekond</string>
 	<key>description</key>
 	<string>Open Jira Ticket</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>FreeWheel JIRA</string>
+	<string>Alfred JIRA Workflow</string>
 	<key>objects</key>
 	<array>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
 				<integer>126</integer>
 				<key>keyword</key>
-				<string>jira</string>
+				<string>{var:key}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Expand Tickets in Jira…</string>
 				<key>script</key>
-				<string>/usr/bin/python jira.py {query}</string>
+				<string>python3 jira.py {query} $server_url "$projects" $sort</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Open Jira Ticket</string>
 				<key>title</key>
@@ -57,41 +92,176 @@
 			<key>uid</key>
 			<string>29388DAE-861D-424E-9B53-9D07B2D789B6</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>plusspaces</key>
-				<false/>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
 				<key>url</key>
 				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
 			<string>11D5721D-E45C-4D45-82C8-2CC370002271</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>'{query}', {variables}</string>
+				<key>cleardebuggertext</key>
+				<false/>
+				<key>processoutputs</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.debug</string>
+			<key>uid</key>
+			<string>6F2E82CC-1B20-48A7-9504-C6BC86C17D9B</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>## About
+
+This workflow opens a JIRA issue from Alfred. 
+
+You have two oprions:
+
+1. Enter a ticket key (e.g. PROJ-123). The workflows offers only one option - opening the ticket you have entered on server based on your configuration.
+2. Enter just a ticket number (e.g. 123). The workflow generates optinos (URLs to ticket keys you may want to open) for all projects you have configured.
+
+## Configuration
+
+* **Hotkey** The hotkey which will be used to trigger the workflow. By default it is `jira`.
+* **JIRA Server URL** The URL of your jira server. 
+* **List of Projects in JIRA** List of the projects which will be used for generating options in case you enter just a ticket number and not the ticket key.
+* **Sort projects** If checked list of projects will be sorted alphabetically otherwise projects will be listed as you ordered them during input.
+
+## Credits
+
+Based on work of zfdang (https://github.com/zfdang/alfred-jira-workflow)</string>
 	<key>uidata</key>
 	<dict>
 		<key>11D5721D-E45C-4D45-82C8-2CC370002271</key>
 		<dict>
+			<key>xpos</key>
+			<real>500</real>
 			<key>ypos</key>
 			<real>60</real>
 		</dict>
 		<key>29388DAE-861D-424E-9B53-9D07B2D789B6</key>
 		<dict>
+			<key>xpos</key>
+			<real>225</real>
 			<key>ypos</key>
-			<real>60</real>
+			<real>50</real>
+		</dict>
+		<key>6F2E82CC-1B20-48A7-9504-C6BC86C17D9B</key>
+		<dict>
+			<key>xpos</key>
+			<real>170</real>
+			<key>ypos</key>
+			<real>275</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>jira</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Key which will be used to trigger the workflow</string>
+			<key>label</key>
+			<string>Hotkey</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>key</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>The URL of your JIRA server starting with https://</string>
+			<key>label</key>
+			<string>JIRA server URL</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>server_url</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+				<key>verticalsize</key>
+				<integer>3</integer>
+			</dict>
+			<key>description</key>
+			<string>Shortcuts of projects in JIRA. Separate shortcuts by space: value1 value2</string>
+			<key>label</key>
+			<string>JIRA projects</string>
+			<key>type</key>
+			<string>textarea</string>
+			<key>variable</key>
+			<string>projects</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+			</dict>
+			<key>description</key>
+			<string>If checked projects will be sorted alphabetically</string>
+			<key>label</key>
+			<string>Sort projects</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>sort</string>
+		</dict>
+	</array>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/zfdang/alfred-jira-workflow</string>
 </dict>

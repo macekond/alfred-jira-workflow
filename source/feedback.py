@@ -22,7 +22,9 @@ class Feedback():
         Returns:
             XML string
         """
-        return et.tostring(self.feedback)
+        return et.tostring(self.feedback).decode()
+
+
 
     def add_item(self, title, subtitle="", arg="", valid="yes", autocomplete="", icon="icon.png"):
         """
